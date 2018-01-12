@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+       
+  <title>ORDERS: ONLINE MOBILE STORE</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ 
+  
+  <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/demo.css">
+ 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+  <script src="assets/js/jquery.payform.min.js" charset="utf-8"></script>
+  <script src="assets/js/script.js"></script>
+ <style>
+ .navbar {
+      margin-bottom: 50px;
+      border-radius: 0;
+    }
+    
+    /* Remove the jumbotron's default bottom margin */ 
+     .jumbotron {
+      margin-bottom: 0;
+    }
+   
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+    .col-size{
+    display: inline-block;
+width: 50%;
+height: 50%;
+margin-left: 25%; 
+
+
+}
+
+.orderData{
+    font-style: italic;
+   
+    margin: 10px;
+
+    text-align: center;
+
+}
+
+
+
+
+@media only screen and (max-width: 480px){
+  .col-size{
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+.modal {
+   display: none; /* Hidden by default */
+   position: fixed; /* Stay in place */
+   z-index: 1; /* Sit on top */
+   padding-top: 100px; /* Location of the box */
+   left: 0;
+   top: 0;
+   width: 100%; /* Full width */
+   height: 100%; /* Full height */
+   overflow: auto; /* Enable scroll if needed */
+   background-color: rgb(0,0,0); /* Fallback color */
+   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+   background-color: #fefefe ;
+   margin: auto;
+   padding: 20px;
+   border: 1px solid #888;
+   width: 80%;
+}
+
+/* The Close Button */
+.close {
+   color: #aaaaaa ;
+   float: right;
+   font-size: 28px;
+   font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+   color: #000;
+   text-decoration: none;
+   cursor: pointer;
+}
+ </style>
+  
+  
+</head>
+<body onload="pageLoad()">
+
+<div class="jumbotron">
+  <div class="container text-center">
+    <h1>Tech Savy Online Store</h1>      
+    <p>Mission, Vission & Values</p>
+  </div>
+</div>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="index.html">Tech Savy</a>
+      <a class="navbar-brand" href="shop.html">Products</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" ><span class="glyphicon glyphicon-user"></span> Welcome</a></li>
+            <li><a href="#" id="name"></span> </a></li>
+            <li><a href="#" id="total">Total Price: </a></li>
+            <li><a href="#" id="price"> </a></li>
+            <li id="condition"><a href="index.html" ><span class="glyphicon glyphicon-user"></span>Logout </a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<form action="confirmation.html">
+    <ul class="errorMessages"></ul>
+<div class = "orderData">
+  <br>
+  <br>
+ 
+<h1 >Details:</h3>
+  <label for="name">Name:</label>
+  <input type="text" required>
+  <label for="address">Delivery Address:</label>
+  <input type="text" required>
+  <label for="telephone">Telephone No:</label>
+  <input type="text" maxlength="10" required>
+ <div class="creditCardForm">
+  <div class="heading">
+      <h1>Confirm Purchase</h1>
+  </div>
+  <div class="payment">
+     
+          <div class="form-group owner">
+              <label for="owner">Owner</label>
+              <input type="text" class="form-control" id="owner" required>
+          </div>
+          <div class="form-group CVV">
+              <label for="cvv">CVV</label>
+              <input type="text" class="form-control" id="cvv" required>
+          </div>
+          <div class="form-group" id="card-number-field">
+              <label for="cardNumber">Card Number</label>
+              <input type="text" class="form-control" id="cardNumber" required>
+          </div>
+          <div class="form-group" id="expiration-date">
+              <label>Expiration Date</label>
+              <select>
+                  <option value="01">January</option>
+                  <option value="02">February </option>
+                  <option value="03">March</option>
+                  <option value="04">April</option>
+                  <option value="05">May</option>
+                  <option value="06">June</option>
+                  <option value="07">July</option>
+                  <option value="08">August</option>
+                  <option value="09">September</option>
+                  <option value="10">October</option>
+                  <option value="11">November</option>
+                  <option value="12">December</option>
+              </select>
+              <select>
+                  <option value="16"> 2016</option>
+                  <option value="17"> 2017</option>
+                  <option value="18"> 2018</option>
+                  <option value="19"> 2019</option>
+                  <option value="20"> 2020</option>
+                  <option value="21"> 2021</option>
+              </select>
+          </div>
+          <div class="form-group" id="credit_cards">
+              <img src="assets/images/visa.jpg" id="visa">
+              <img src="assets/images/mastercard.jpg" id="mastercard">
+              <img src="assets/images/amex.jpg" id="amex">
+          </div>
+          <button class="btn btn-default">Submit</button>
+      </form>
+
+     
+  </div>
+  
+</div>
+  <a class="lnk" href="shop.html">Cancel Order</a>   
+
+
+<div id="myModal" class="modal">
+  <div class="modal-content" id="modall">
+      <span class="close">&times;</span>
+      <p>Your Order Is Confirmed</p>
+      <p>Order Details:</p>
+      <div id="phone"></div>
+      <br>
+      <div id="tariff"></div>
+      <br>
+      <div id ="accessory"></div>
+    </div>
+  </div>
+  
+ 
+
+      <script>
+document.getElementById("name").innerHTML = localStorage.getItem("userName");
+var modal = document.getElementById("myModal")
+            var span = document.getElementsByClassName("close")[0];    
+            var totalCostUpfront =  localStorage.getItem("totalUpfront")
+                var totalCostMonthly = localStorage.getItem("totalMonthly")
+
+            function pageLoad(){
+                
+              var item = document.getElementById("condition");
+                
+               
+             
+              document.getElementById("price").innerHTML = "Upfront: "+totalCostUpfront.toString()+"$ " + "Monthly: "+totalCostMonthly.toString()+"$"
+              document.getElementById("totalCost").innerHTML = "Upfront: "+totalCostUpfront.toString()+"$ " + "Monthly: "+totalCostMonthly.toString()+"$"
+
+              
+          
+              if (document.getElementById("name").innerHTML == "") {
+                item.style.display="none";
+                }
+              
+            }
+
+span.onclick = function() {
+   modal.style.display = "none";
+   window.location = "shop.html"
+}
+
+window.onclick = function(event) {
+   if (event.target == modal) {
+       modal.style.display = "none";
+       window.location = "shop.html"
+   }
+}
+
+          </script>
+</body>
+</html>

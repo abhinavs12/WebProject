@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>SHOP: ONLINE MOBILE STORE </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="scrip.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script  type="text/javascript" src="getProduct.js">
+  </script>
+
+ 
+</head>
+<body onload="hide()">
+
+<div class="jumbotron">
+  <div class="container text-center">
+      
+    <h1>Tech Savy Online Store</h1>      
+    <p>Mission, Vission & Values</p>
+  </div>
+</div>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="index.html">Tech Savy</a>
+      <a class="navbar-brand" onclick="unhide()">Filter Products</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#" ><span class="glyphicon glyphicon-user"></span> Welcome</a></li>
+        <li><a href="#" id="name"><span class="glyphicon glyphicon-user"></span> </a></li>
+        <li><a href="YourOrders.html" id="urOrders">Your Orders</a></li>
+        <li id="condition"><a href="index.html" ><span class="glyphicon glyphicon-user"></span>Logout </a></li>
+      </ul>
+    </div>
+    
+  </div>
+</nav>
+
+
+<div id="myBtnContainer" class="hidden">
+    <h2>Filter Products:</h2>
+  <button class="btn active" onclick="filterSelection('all')"> Show all</button>
+  <button class="btn" onclick="filterSelection('apple')"> Apple</button>
+  <button class="btn" onclick="filterSelection('samsung')"> Samsung</button>
+  <button class="btn" onclick="filterSelection('pixel')"> Pixel</button>
+  <button class="btn" onclick="filterSelection('mi')"> Mi</button>
+  <button class="btn" onclick="filterSelection('vivo')"> Vivo</button>
+  <br><br>
+</div>
+
+<div class="container">    
+  <div class="row">
+    <div class="filterDiv apple col-size">
+      <div class="panel panel-primary">
+        <div class="panel-heading">CHRISTMAS DEAL</div>
+        <a href="iphonex.html"><div class="panel-body"><img src="iphonex.jpg" class="img-responsive" style="width:100%" alt="Image"></div></a>
+        <div class="iphoneX panel-footer">iPhone X</div>
+        <div id="demo" style="color:black" >
+            <a onclick="iphoneX()">ShowDetails</a>
+          </div>
+      </div>
+    </div>
+    <div class=" filterDiv samsung col-size"> 
+      <div class="panel panel-danger">
+        <div class="panel-heading">CHRISTMAS DEAL</div>
+        <a href="samsung.html"><div class="panel-body"><img src="samsungs8.jpg" class="img-responsive" style="width:100%" alt="Image"></div></a>
+        <div class="samsungs8 panel-footer">Samsung S8</div>
+        <div id="demo1">
+            <a onclick="s8()">ShowDetails</a>
+          </div>
+      </div>
+    </div>
+    <div class="filterDiv apple col-size"> 
+      <div class="panel panel-primary">
+        <div class="panel-heading">CHRISTMAS DEAL</div>
+        <a href="iphone8.html"><div class="panel-body"><img src="iphone8.jpg" class="img-responsive" style="width:100%" alt="Image"></div></a>
+        <div class="iphone8 panel-footer">iPhone 8</div>
+        <div id="demo5">
+            <a onclick="iphone8()">ShowDetails</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class ="row">
+    <div class="filterDiv mi col-size">
+      <div class="panel panel-primary">
+        <div class="panel-heading">CHRISTMAS DEAL</div>
+        <a href="mi5.html"><div class="panel-body"><img src="mi5.jpg" class="img-responsive" style="width:100%" alt="Image"></div></a>
+        <div class="mi5 panel-footer">MI 5</div>
+        <div id="demo3">
+            <a onclick="mi()">ShowDetails</a>
+          </div>
+      </div>
+    </div>
+    <div class="filterDiv vivo col-size"> 
+      <div class="panel panel-primary">
+        <div class="panel-heading">CHRISTMAS DEAL</div>
+        <a href="v5s.html"><div class="panel-body"><img src="V5s.jpg" class="img-responsive" style="width:100%" alt="Image"></div></a>
+        <div class="v5s panel-footer">V5s</div>
+        <div id="demo4">
+            <a onclick="v5s()">ShowDetails</a>
+          </div>
+      </div>
+    </div>
+    <div class="filterDiv pixel col-size"> 
+      <div class="panel panel-success">
+        <div class="panel-heading">CHRISTMAS DEAL</div>
+        <a href="pixel.html"><div class="panel-body"><img src="pixel2xl.jpg" class="img-responsive" style="width:100%" alt="Image"></div></a>
+        <div class="pixel panel-footer">Pixel 2XL</div>
+        <div id="demo2">
+            <a onclick="pixel()">ShowDetails</a>
+          </div>
+      </div>
+    </div>
+  </div>
+
+</div><br><br>
+
+<script>
+  document.getElementById("name").innerHTML = localStorage.getItem("userName");
+
+  filterSelection("all")
+function filterSelection(c) {
+  var x, i;
+  x = document.getElementsByClassName("filterDiv");
+  if (c == "all") c = "";
+  for (i = 0; i < x.length; i++) {
+    w3RemoveClass(x[i], "show");
+    if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+  }
+}
+
+function w3AddClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+  }
+}
+
+function w3RemoveClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    while (arr1.indexOf(arr2[i]) > -1) {
+      arr1.splice(arr1.indexOf(arr2[i]), 1);     
+    }
+  }
+  element.className = arr1.join(" ");
+}
+
+// Add active class to the current button (highlight it)
+var btnContainer = document.getElementById("myBtnContainer");
+var btns = btnContainer.getElementsByClassName("btn");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function(){
+    var current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+}
+
+function unhide() {
+  var item = document.getElementById("myBtnContainer");
+  if (item) {
+  item.className=(item.className=='hidden')?'unhidden':'hidden';
+  }}
+
+
+  function hide() {
+  var item = document.getElementById("condition");
+  var item2 = document.getElementById("urOrders")
+  if (document.getElementById("name").innerHTML == "") {
+  item.style.display="none";
+  item2.style.display="none";
+
+  }
+}
+</script>
+
+</body>
+</html>

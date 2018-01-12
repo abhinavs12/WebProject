@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+       
+  <title>ORDERS: ONLINE MOBILE STORE</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="tariffAndAccessory.js"></script>
+ <style>
+ .navbar {
+      margin-bottom: 50px;
+      border-radius: 0;
+    }
+    
+    /* Remove the jumbotron's default bottom margin */ 
+     .jumbotron {
+      margin-bottom: 0;
+    }
+   
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+    .col-size{
+    display: inline-block;
+width: 50%;
+height: 50%;
+margin-left: 25%; 
+
+
+}
+
+
+@media only screen and (max-width: 480px){
+  .col-size{
+    width: 100%;
+    margin-left: 0;
+  }
+}
+ </style>
+  
+  
+</head>
+<body onload="hide()">
+
+<div class="jumbotron">
+  <div class="container text-center">
+    <h1>Tech Savy Online Store</h1>      
+    <p>Mission, Vission & Values</p>
+  </div>
+</div>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="index.html">Tech Savy</a>
+      <a class="navbar-brand" href="shop.html">Products</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" ><span class="glyphicon glyphicon-user"></span> Welcome</a></li>
+            <li><a href="#" id="name"><span class="glyphicon glyphicon-user"></span> </a></li>
+            <li><a onclick="getRadioCheckedValue()" href="orderDetails.html"><span class="glyphicon glyphicon-shopping-cart"></span>Place Order</a></li>
+            <li id="condition"><a href="index.html" ><span class="glyphicon glyphicon-user"></span>Logout </a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">    
+    <div class="row">
+      <div class="filterDiv apple col-size">
+        <div class="panel panel-primary">
+          <div class="panel-heading" style="text-align:center">IPHONE 8</div>
+          <a href="#"><div class="panel-body"><img src="iphone8.jpg" class="img-responsive" style="width:100%" alt="Image"></div></a>
+        </div>
+      </div>
+    </div>
+</div>
+<br>
+
+<a onclick="iphone8Tariff()"><h4 style="text-align:center">Choose your Tariff</h1></a>
+<div id="demo" style="background:gray">
+
+</div>
+
+<a onclick="iphone8Accessories()"><h4 style="text-align:center">Choose your Accessories</h1></a>
+  <div id="demo1" style="background:gray">
+  
+  </div>
+  
+  
+
+      <script>
+      
+        function getRadioCheckedValue(){
+          localStorage.removeItem("accessory")
+  localStorage.removeItem("tariff")
+          var ele = document.getElementsByName("tariff")
+          var ele1 = document.getElementsByName("accessory")
+          
+          for(var i = 0; i < ele.length; i++)
+             {
+                if(ele[i].checked)
+                {
+                   localStorage.setItem("tariff", ele[i].value) 
+                   break;
+                }
+                
+             }
+          
+             for(var i = 0; i < ele1.length; i++)
+             {
+                if(ele1[i].checked)
+                {
+                  localStorage.setItem("accessory", ele1[i].value) 
+                   break;
+                }
+                
+             }
+          
+             localStorage.setItem("phone","iPhone8") 
+            
+             
+            }
+        
+
+            document.getElementById("name").innerHTML = localStorage.getItem("userName");
+            function hide() {
+  var item = document.getElementById("condition");
+  if (document.getElementById("name").innerHTML == "") {
+  item.style.display="none";
+  }
+}
+          </script>
+</body>
+</html>

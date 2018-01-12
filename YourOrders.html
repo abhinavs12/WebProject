@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <script  type="text/javascript" src="getProduct.js">
+        </script>
+  <title>PRODUCTS: ONLINE MOBILE STORE</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default rounded borders and increase the bottom margin */ 
+    .navbar {
+      margin-bottom: 50px;
+      border-radius: 0;
+    }
+    
+    /* Remove the jumbotron's default bottom margin */ 
+     .jumbotron {
+      margin-bottom: 0;
+    }
+   
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+
+    .col-size{
+    display: inline-block;
+width: 25%;
+height: 25%;
+float: left;
+padding: 30px;
+
+}
+.qty{
+  margin-left: 70px;
+}
+
+
+@media only screen and (max-width: 480px){
+  .col-size{
+    width: 100%;
+    margin-left: 0;
+  }
+  .qty{
+  margin-left: 120px;
+}
+}
+
+.modal {
+   display: none; /* Hidden by default */
+   position: fixed; /* Stay in place */
+   z-index: 1; /* Sit on top */
+   padding-top: 100px; /* Location of the box */
+   left: 0;
+   top: 0;
+   width: 100%; /* Full width */
+   height: 100%; /* Full height */
+   overflow: auto; /* Enable scroll if needed */
+   background-color: rgb(0,0,0); /* Fallback color */
+   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+   background-color: #fefefe ;
+   margin: auto;
+   padding: 20px;
+   border: 1px solid #888;
+   width: 80%;
+}
+
+/* The Close Button */
+.close {
+   color: #aaaaaa ;
+   float: right;
+   font-size: 28px;
+   font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+   color: #000;
+   text-decoration: none;
+   cursor: pointer;
+}
+  </style>
+</head>
+<body onload="pageLoad()">
+
+<div class="jumbotron">
+  <div class="container text-center">
+    <h1>Tech Savy Online Store</h1>      
+    <p>Mission, Vission & Values</p>
+  </div>
+</div>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="index.html">Tech Savy</a>
+      <a class="navbar-brand" href="shop.html">Products</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" ><span class="glyphicon glyphicon-user"></span> Welcome</a></li>
+            <li><a href="#" id="name"><span class="glyphicon glyphicon-user"></span> </a></li>
+            <li id="condition"><a href="index.html" ><span class="glyphicon glyphicon-user"></span>Logout </a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<h1 align="center">Your Order:</h1><br>
+<div class="container"> 
+ <div id="showData"></div>
+</div>
+
+
+
+
+
+
+      <script>
+            document.getElementById("name").innerHTML = localStorage.getItem("userName");
+           
+              
+            function pageLoad(){
+                var htmlCode = "";
+                var htmlCode1 = "";
+                var htmlCode2 = "";
+                var htmlCode3 = "";
+                var xhttp = new XMLHttpRequest();
+                var phoneName =  document.getElementById("iphoneX");
+                xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+        
+                var json_obj = JSON.parse(this.responseText);
+                for(var i =0; i< json_obj.length;i++ ){
+
+
+                    if(json_obj[i].nameOfPhone.toString() == "iPhoneX"){
+              htmlCode3 = htmlCode3+' <div class="row">      <div class="panel panel-primary">                  <div class="panel-heading" style="text-align:center">IPHONE X</div>    <div  id="showPhoneImage" position="absolute"></div><div  id="showTariff"></div><div  id="showAccessory"></div><div class="filterDiv apple col-size"><div class="panel panel-primary">          <div class="panel-heading" style="text-align:center">TOTAL PRICE</div> <h6 id="totalCost" align="center"></h6></div></div></div></div>'
+                 htmlCode =  ' <div class="filterDiv apple col-size">             <a href="#"><div class="panel-body"><img src="iphonex.jpg" class="img-responsive" style="width:100%" alt="Image"></div></a>      </div>    '
+                 document.getElementById("showData").innerHTML = htmlCode3
+                 document.getElementById("showPhoneImage").innerHTML = htmlCode
+                 document.getElementById("totalCost").innerHTML = "Upfront: "+json_obj[i].upfrontCost.toString()+"$ " + "Monthly: "+json_obj[i].monthlyCost.toString()+"$"
+                 htmlCode1 = '<div class="filterDiv apple col-size">        <div class="panel panel-primary">          <div class="panel-heading" style="text-align:center">TARIFF SELECTED</div>            <div class="panel-body">'+ json_obj[i].nameOfTariff.toString()+'</div>  </div>      </div>        '
+                document.getElementById("showTariff").innerHTML = htmlCode1
+                if (json_obj[i].nameOfAccessory){
+                 htmlCode2 = ' <div class="filterDiv apple col-size">        <div class="panel panel-primary">          <div class="panel-heading" style="text-align:center">ACCESSORY SELECTED</div>         <div class="panel-body">'+ json_obj[i].nameOfAccessory.toString()+'</div>       </div>      </div>    '
+                document.getElementById("showAccessory").innerHTML = htmlCode2
+              }
+
+              } else if(json_obj[i].nameOfPhone.toString() === "SamsungS8"){
+                htmlCode3 =htmlCode3+ ' <div class="row">      <div class="panel panel-primary">                  <div class="panel-heading" style="text-align:center">SAMSUNG S8</div>    <div  id="showPhoneImage1" position="absolute"></div><div  id="showTariff1"></div><div  id="showAccessory1"></div><div class="filterDiv apple col-size"><div class="panel panel-primary">          <div class="panel-heading" style="text-align:center">TOTAL PRICE</div> <h6 id="totalCost1" align="center"></h6></div></div></div></div>'
+                htmlCode =  ' <div class="filterDiv apple col-size">             <a href="#"><div class="panel-body"><img src="samsungs8.jpg" class="img-responsive" style="width:100%" alt="Image"></div></a> </div>    '
+                document.getElementById("showData").innerHTML = htmlCode3
+                document.getElementById("showPhoneImage1").innerHTML = htmlCode
+                document.getElementById("totalCost1").innerHTML = "Upfront: "+json_obj[i].upfrontCost.toString()+"$ " + "Monthly: "+json_obj[i].monthlyCost.toString()+"$"
+                 htmlCode1 = '<div class="filterDiv apple col-size">        <div class="panel panel-primary">          <div class="panel-heading" style="text-align:center">TARIFF SELECTED</div>            <div class="panel-body">'+ json_obj[i].nameOfTariff.toString()+'</div>  </div>      </div>        '
+                document.getElementById("showTariff1").innerHTML = htmlCode1
+                if (json_obj[i].nameOfAccessory){
+                 htmlCode2 = ' <div class="filterDiv apple col-size">        <div class="panel panel-primary">          <div class="panel-heading" style="text-align:center">ACCESSORY SELECTED</div>         <div class="panel-body">'+ json_obj[i].nameOfAccessory.toString()+'</div>       </div>      </div>    '
+                document.getElementById("showAccessory1").innerHTML = htmlCode2
+              }
+            }
+              else if(json_obj[i].nameOfPhone.toString() === "iPhone8"){
+                htmlCode3 =htmlCode3+ ' <div class="row">      <div class="panel panel-primary">                  <div class="panel-heading" style="text-align:center">IPHONE 8</div>    <div  id="showPhoneImage2" position="absolute"></div><div  id="showTariff2"></div><div  id="showAccessory2"></div><div class="filterDiv apple col-size"><div class="panel panel-primary">          <div class="panel-heading" style="text-align:center">TOTAL PRICE</div> <h6 id="totalCost2" align="center"></h6></div></div></div></div>'
+                htmlCode =  ' <div class="filterDiv apple col-size">             <a href="#"><div class="panel-body"><img src="iphone8.jpg" class="img-responsive" style="width:100%" alt="Image"></div></a> </div>    '
+                document.getElementById("showData").innerHTML = htmlCode3
+                document.getElementById("showPhoneImage2").innerHTML = htmlCode
+                document.getElementById("totalCost2").innerHTML = "Upfront: "+json_obj[i].upfrontCost.toString()+"$ " + "Monthly: "+json_obj[i].monthlyCost.toString()+"$"
+                 htmlCode1 = '<div class="filterDiv apple col-size">        <div class="panel panel-primary">          <div class="panel-heading" style="text-align:center">TARIFF SELECTED</div>            <div class="panel-body">'+ json_obj[i].nameOfTariff.toString()+'</div>  </div>      </div>        '
+                document.getElementById("showTariff2").innerHTML = htmlCode1
+                if (json_obj[i].nameOfAccessory){
+                 htmlCode2 = ' <div class="filterDiv apple col-size">        <div class="panel panel-primary">          <div class="panel-heading" style="text-align:center">ACCESSORY SELECTED</div>         <div class="panel-body">'+ json_obj[i].nameOfAccessory.toString()+'</div>       </div>      </div>    '
+                document.getElementById("showAccessory2").innerHTML = htmlCode2
+              }
+             } else if(json_obj[i].nameOfPhone.toString() === "Mi5"){
+              
+                htmlCode3 = htmlCode3+' <div class="row">      <div class="panel panel-primary">                  <div class="panel-heading" style="text-align:center">MI 5</div>    <div  id="showPhoneImage3" position="absolute"></div><div  id="showTariff3"></div><div  id="showAccessory3"></div><div class="filterDiv apple col-size"><div class="panel panel-primary">          <div class="panel-heading" style="text-align:center">TOTAL PRICE</div> <h6 id="totalCost3" align="center"></h6></div></div></div></div>'
+                htmlCode =  ' <div class="filterDiv apple col-size">             <a href="#"><div class="panel-body"><img src="mi5.jpg" class="img-responsive" style="width:100%" alt="Image"></div></a>  </div>    '
+                document.getElementById("showData").innerHTML = htmlCode3
+                document.getElementById("showPhoneImage3").innerHTML = htmlCode
+                document.getElementById("totalCost3").innerHTML = "Upfront: "+json_obj[i].upfrontCost.toString()+"$ " + "Monthly: "+json_obj[i].monthlyCost.toString()+"$"
+                 htmlCode1 = '<div class="filterDiv apple col-size">        <div class="panel panel-primary">          <div class="panel-heading" style="text-align:center">TARIFF SELECTED</div>            <div class="panel-body">'+ json_obj[i].nameOfTariff.toString()+'</div>  </div>      </div>        '
+                document.getElementById("showTariff3").innerHTML = htmlCode1
+                if (json_obj[i].nameOfAccessory){
+                 htmlCode2 = ' <div class="filterDiv apple col-size">        <div class="panel panel-primary">          <div class="panel-heading" style="text-align:center">ACCESSORY SELECTED</div>         <div class="panel-body">'+ json_obj[i].nameOfAccessory.toString()+'</div>       </div>      </div>    '
+                document.getElementById("showAccessory3").innerHTML = htmlCode2
+              }
+            }
+              else if(json_obj[i].nameOfPhone.toString() === "Vivo5S"){
+                htmlCode3 =htmlCode3+ ' <div class="row">      <div class="panel panel-primary">                  <div class="panel-heading" style="text-align:center">VIVO 5S</div>    <div  id="showPhoneImage4" position="absolute"></div><div  id="showTariff4"></div><div  id="showAccessory4"></div><div class="filterDiv apple col-size"><div class="panel panel-primary">          <div class="panel-heading" style="text-align:center">TOTAL PRICE</div> <h6 id="totalCost4" align="center"></h6></div></div></div></div>'
+                htmlCode =  ' <div class="filterDiv apple col-size">             <a href="#"><div class="panel-body"><img src="V5s.jpg" class="img-responsive" style="width:100%" alt="Image"></div></a> </div>    '
+                document.getElementById("showData").innerHTML =htmlCode3
+                document.getElementById("showPhoneImage4").innerHTML = htmlCode
+                document.getElementById("totalCost4").innerHTML = "Upfront: "+json_obj[i].upfrontCost.toString()+"$ " + "Monthly: "+json_obj[i].monthlyCost.toString()+"$"
+                 htmlCode1 = '<div class="filterDiv apple col-size">        <div class="panel panel-primary">          <div class="panel-heading" style="text-align:center">TARIFF SELECTED</div>            <div class="panel-body">'+ json_obj[i].nameOfTariff.toString()+'</div>  </div>      </div>        '
+                document.getElementById("showTariff4").innerHTML = htmlCode1
+                if (json_obj[i].nameOfAccessory){
+                 htmlCode2 = ' <div class="filterDiv apple col-size">        <div class="panel panel-primary">          <div class="panel-heading" style="text-align:center">ACCESSORY SELECTED</div>         <div class="panel-body">'+ json_obj[i].nameOfAccessory.toString()+'</div>       </div>      </div>    '
+                document.getElementById("showAccessory4").innerHTML = htmlCode2
+              }
+             } else if(json_obj[i].nameOfPhone.toString() === "Pixel2XL"){
+                htmlCode3 = htmlCode3+' <div class="row">      <div class="panel panel-primary">                  <div class="panel-heading" style="text-align:center">PIXEL 2XL</div>    <div  id="showPhoneImage5" position="absolute"></div><div  id="showTariff5"></div><div  id="showAccessory5"></div><div class="filterDiv apple col-size"><div class="panel panel-primary">          <div class="panel-heading" style="text-align:center">TOTAL PRICE</div> <h6 id="totalCost5" align="center"></h6></div></div></div></div>'
+                htmlCode =  ' <div class="filterDiv apple col-size">             <a href="#"><div class="panel-body"><img src="pixel2xl.jpg" class="img-responsive" style="width:100%" alt="Image"></div></a> </div>    '
+                document.getElementById("showData").innerHTML = htmlCode3
+                document.getElementById("showPhoneImage5").innerHTML = htmlCode
+                document.getElementById("totalCost5").innerHTML = "Upfront: "+json_obj[i].upfrontCost.toString()+"$ " + "Monthly: "+json_obj[i].monthlyCost.toString()+"$"
+                 htmlCode1 = '<div class="filterDiv apple col-size">        <div class="panel panel-primary">          <div class="panel-heading" style="text-align:center">TARIFF SELECTED</div>            <div class="panel-body">'+ json_obj[i].nameOfTariff.toString()+'</div>  </div>      </div>        '
+                document.getElementById("showTariff5").innerHTML = htmlCode1
+                if (json_obj[i].nameOfAccessory){
+                 htmlCode2 = ' <div class="filterDiv apple col-size">        <div class="panel panel-primary">          <div class="panel-heading" style="text-align:center">ACCESSORY SELECTED</div>         <div class="panel-body">'+ json_obj[i].nameOfAccessory.toString()+'</div>       </div>      </div>    '
+                document.getElementById("showAccessory5").innerHTML = htmlCode2
+              }
+
+            }
+
+        }    
+          
+             }
+        };
+            xhttp.open("GET", "https://onlinemobilestore.herokuapp.com/orders/username/"+localStorage.getItem("userName").toString(), true);
+            xhttp.send();
+
+              
+              var item = document.getElementById("condition");
+  if (document.getElementById("name").innerHTML == "") {
+  item.style.display="none";
+  }
+              
+            }
+        
+
+            
+
+           
+          
+
+      
+           
+          </script>
+</body>
+</html>
